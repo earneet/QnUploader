@@ -34,7 +34,7 @@ fi
 
 # 编译程序
 echo "🔨 编译程序..."
-if ! go build -o qiniu-uploader ./cmd/qiniu-uploader; then
+if ! go build -o qu ./cmd/qiniu-uploader; then
     echo "❌ 编译失败"
     exit 1
 fi
@@ -42,15 +42,15 @@ fi
 echo "✅ 编译成功!"
 echo ""
 echo "📋 使用说明:"
-echo "   1. 初始化配置: ./qiniu-uploader config init"
-echo "   2. 上传文件: ./qiniu-uploader upload"
-echo "   3. 查看帮助: ./qiniu-uploader --help"
+echo "   1. 初始化配置: ./qu config init"
+echo "   2. 上传文件: ./qu upload"
+echo "   3. 查看帮助: ./qu --help"
 echo ""
 echo "💡 提示: 您可以将程序移动到系统PATH目录，方便使用"
-echo "   sudo mv qiniu-uploader /usr/local/bin/"
+echo "   sudo mv qu /usr/local/bin/"
 
 # 检查文件权限
-chmod +x qiniu-uploader
+chmod +x qu
 
 echo ""
 echo "🎉 七牛云上传工具已准备就绪!"

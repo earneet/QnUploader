@@ -15,7 +15,7 @@ import (
 func (a *App) startInteractiveUpload() error {
 	if a.client == nil {
 		fmt.Println("❌ 七牛云客户端未初始化")
-		fmt.Println("请先运行 'qiniu-uploader config init' 配置七牛云信息")
+		fmt.Println("请先运行 'qu config init' 配置七牛云信息")
 		return fmt.Errorf("七牛云客户端未初始化")
 	}
 
@@ -171,7 +171,7 @@ func (a *App) initConfig() error {
 	}
 
 	fmt.Println("\n✅ 配置保存成功!")
-	fmt.Println("配置文件位置: ~/.config/qiniu-uploader/config.yaml")
+	fmt.Println("配置文件位置: ~/.config/qu/config.yaml")
 
 	// 重新加载配置
 	a.config = cfg
@@ -192,7 +192,7 @@ func (a *App) initConfig() error {
 func (a *App) showConfig() error {
 	if a.config == nil {
 		fmt.Println("❌ 配置未初始化")
-		fmt.Println("请运行 'qiniu-uploader config init' 初始化配置")
+		fmt.Println("请运行 'qu config init' 初始化配置")
 		return nil
 	}
 
@@ -249,6 +249,6 @@ func (a *App) showConfig() error {
 func (a *App) startService() error {
 	fmt.Println("🔧 后台服务功能正在开发中...")
 	fmt.Println("当前版本暂不支持后台服务模式")
-	fmt.Println("请使用 'qiniu-uploader upload' 进入交互模式")
+	fmt.Println("请使用 'qu upload' 进入交互模式")
 	return nil
 }

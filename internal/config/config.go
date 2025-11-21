@@ -75,7 +75,7 @@ func getConfigDir() (string, error) {
 		return "", err
 	}
 
-	configDir := filepath.Join(homeDir, ".config", "qiniu-uploader")
+	configDir := filepath.Join(homeDir, ".config", "qu")
 
 	// 确保配置目录存在
 	if err := os.MkdirAll(configDir, 0755); err != nil {

@@ -26,7 +26,7 @@ func NewApp() *App {
 	cfg, err := config.Load()
 	if err != nil {
 		fmt.Printf("警告: 加载配置失败: %v\n", err)
-		fmt.Println("请运行 'qiniu-uploader config init' 初始化配置")
+		fmt.Println("请运行 'qu config init' 初始化配置")
 	}
 	app.config = cfg
 
@@ -52,7 +52,7 @@ func NewApp() *App {
 // setupCommands 设置命令
 func (a *App) setupCommands() {
 	a.rootCmd = &cobra.Command{
-		Use:   "qiniu-uploader",
+		Use:   "qu",
 		Short: "七牛云文件上传工具",
 		Long:  "支持拖拽上传、快捷键操作的文件上传工具",
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -164,7 +164,7 @@ func (a *App) newVersionCommand() *cobra.Command {
 // uploadFile 上传单个文件
 func (a *App) uploadFile(filePath string) error {
 	if a.client == nil {
-		return fmt.Errorf("七牛云客户端未初始化，请先运行 'qiniu-uploader config init' 配置七牛云信息")
+		return fmt.Errorf("七牛云客户端未初始化，请先运行 'qu config init' 配置七牛云信息")
 	}
 
 	// 检查文件是否存在

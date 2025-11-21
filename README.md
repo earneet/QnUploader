@@ -41,7 +41,7 @@ go install ./cmd/qiniu-uploader
 首次使用需要配置七牛云信息：
 
 ```bash
-./qiniu-uploader config init
+./qu config init
 ```
 
 按照提示输入：
@@ -54,7 +54,7 @@ go install ./cmd/qiniu-uploader
 
 #### 交互式上传模式
 ```bash
-./qiniu-uploader upload
+./qu upload
 ```
 
 进入交互模式后，您可以：
@@ -67,10 +67,10 @@ go install ./cmd/qiniu-uploader
 #### 直接上传文件
 ```bash
 # 上传单个文件
-./qiniu-uploader upload /path/to/image.jpg
+./qu upload /path/to/image.jpg
 
 # 或者使用 -f 参数
-./qiniu-uploader upload -f /path/to/image.jpg
+./qu upload -f /path/to/image.jpg
 ```
 
 ## 使用示例
@@ -78,7 +78,7 @@ go install ./cmd/qiniu-uploader
 ### 交互模式示例
 
 ```bash
-$ ./qiniu-uploader upload
+$ ./qu upload
 🚀 七牛云上传工具 - 交互模式
 ==================================================
 支持以下操作:
@@ -127,7 +127,7 @@ $ ./qiniu-uploader upload
 
 ### 配置文件位置
 
-配置文件保存在：`~/.config/qiniu-uploader/config.yaml`
+配置文件保存在：`~/.config/qu/config.yaml`
 
 ### 配置示例
 
@@ -163,7 +163,7 @@ export QINIU_DOMAIN="your_domain.com"
 ### 主命令
 
 ```bash
-qiniu-uploader [command]
+qu [command]
 ```
 
 ### 可用命令
@@ -177,23 +177,23 @@ qiniu-uploader [command]
 
 ```bash
 # 交互式上传
-qiniu-uploader upload
+qu upload
 
 # 上传指定文件
-qiniu-uploader upload /path/to/file.jpg
+qu upload /path/to/file.jpg
 
 # 使用 -f 参数
-qiniu-uploader upload -f /path/to/file.jpg
+qu upload -f /path/to/file.jpg
 ```
 
 ### Config 命令
 
 ```bash
 # 初始化配置
-qiniu-uploader config init
+qu config init
 
 # 显示当前配置
-qiniu-uploader config show
+qu config show
 ```
 
 ## 支持的文件类型
@@ -211,7 +211,7 @@ qiniu-uploader config show
 ### 常见问题
 
 1. **"七牛云客户端未初始化"**
-   - 运行 `qiniu-uploader config init` 初始化配置
+   - 运行 `qu config init` 初始化配置
 
 2. **"文件不存在"**
    - 检查文件路径是否正确
@@ -230,7 +230,7 @@ qiniu-uploader config show
 
 ```bash
 export QINIU_UPLOADER_DEBUG=true
-qiniu-uploader upload
+qu upload
 ```
 
 ## 开发说明
