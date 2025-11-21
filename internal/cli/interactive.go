@@ -28,6 +28,19 @@ func (a *App) startInteractiveUpload() error {
 	fmt.Println("  4. 输入 'quit' 或 'exit' 退出")
 	fmt.Println("=" + strings.Repeat("=", 50))
 
+	// 显示拖拽使用说明
+	if a.dragDropHandler != nil {
+		fmt.Println()
+		fmt.Println(a.dragDropHandler.GetDragDropInstructions())
+	}
+
+	// 启动拖拽监听（如果支持）
+	if a.dragDropHandler != nil && a.dragDropHandler.IsDragDropSupported() {
+		if err := a.dragDropHandler.Start(); err != nil {
+			fmt.Printf("⚠️  拖拽功能初始化失败: %v\n", err)
+		}
+	}
+
 	// 启动输入循环
 	return a.startInputLoop()
 }
@@ -67,7 +80,12 @@ func (a *App) startInputLoop() error {
 
 // handleFileInput 处理文件输入
 func (a *App) handleFileInput(input string) error {
-	// 检查输入是否为文件路径
+	// 如果拖拽处理器可用，使用它来处理文件路径（包括WSL路径转换）
+	if a.dragDropHandler != nil {
+		return a.dragDropHandler.HandleFileDrop(input)
+	}
+
+	// 回退到原始逻辑
 	filePath := input
 
 	// 如果输入包含引号，去除引号

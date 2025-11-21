@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"runtime"
 	"strings"
+	"qiniu-uploader/internal/utils"
 )
 
 // DragDropHandler 拖拽处理器
@@ -45,6 +46,21 @@ func (h *DragDropHandler) HandleFileDrop(filePath string) error {
 	// 清理文件路径（去除可能的引号和空格）
 	filePath = strings.TrimSpace(filePath)
 	filePath = strings.Trim(filePath, "\"")
+
+	// 在WSL环境中自动转换Windows路径
+	originalPath := filePath
+	normalizedPath, err := utils.NormalizePathForWSL(filePath)
+	if err != nil {
+		return fmt.Errorf("路径转换失败: %v", err)
+	}
+	filePath = normalizedPath
+
+	// 如果路径发生了变化，显示转换信息
+	if filePath != originalPath {
+		fmt.Printf("\n🔄 检测到Windows路径，已自动转换为WSL路径:")
+		fmt.Printf("\n   原始路径: %s", originalPath)
+		fmt.Printf("\n   转换后: %s\n", filePath)
+	}
 
 	fmt.Printf("\n📁 检测到文件拖拽: %s\n", filePath)
 

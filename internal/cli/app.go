@@ -15,6 +15,7 @@ type App struct {
 	rootCmd *cobra.Command
 	client  *qiniu.Client
 	config  *config.Config
+	dragDropHandler *DragDropHandler
 }
 
 // NewApp 创建新的命令行应用
@@ -41,6 +42,10 @@ func NewApp() *App {
 	}
 
 	app.setupCommands()
+
+	// 初始化拖拽处理器
+	app.dragDropHandler = NewDragDropHandler(app)
+
 	return app
 }
 
